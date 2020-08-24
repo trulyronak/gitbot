@@ -5,9 +5,9 @@ inputs:
   branch:
     description: 'The branch to publish'
     required: true
-  head:
-    description: 'The branch to compare it with' 
-    required: false
+  repository:
+    description: 'The repo to look at' 
+    required: true
 outputs:
   message: 
     description: 'The url where the spec is shared on'

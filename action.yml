@@ -1,0 +1,20 @@
+# action.yml
+name: 'Optic Spec Viewer'
+description: 'Automatically publish the latest spec of your API'
+inputs:
+  branch:
+    description: 'The branch to publish'
+    required: true
+  head:
+    description: 'The branch to compare it with' 
+    required: false
+outputs:
+  message: 
+    description: 'The url where the spec is shared on'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.repository }}
+    - ${{ inputs.branch }}
+

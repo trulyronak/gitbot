@@ -1,0 +1,11 @@
+name: Deploy Spec Viewer / Pusher Site
+on: [pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: ./
+      with:
+          repository: trulyronak/gitbot
+          branch: feature/something
+          head: main

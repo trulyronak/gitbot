@@ -7,5 +7,5 @@ jobs:
     - uses: ./
       with:
           repository: trulyronak/gitbot
-          branch: feature/something
+          branch: ${{ github.head_ref }}
           head: main

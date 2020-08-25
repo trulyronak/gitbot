@@ -4,8 +4,19 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+    - uses: actions/checkout@28c7f3d2b5162b5ddd3dfd9a45aa55eaf396478b # https://github.com/actions/checkout/commits/v2
+      with:
+        ref: ${{ github.head_ref }}
     - uses: ./
       with:
           repository: trulyronak/gitbot
-          branch: feature/something
+          branch: ${{ github.head_ref }}
           head: main
+      id: generate_spec
+    - name: Comment on PR
+      uses: unsplash/comment-on-pr@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        msg: ${{ steps.generate_spec.outputs.message }}
+        check_for_duplicate_msg: false

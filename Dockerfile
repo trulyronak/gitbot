@@ -1,6 +1,6 @@
-FROM alpine:3.10
+FROM node:latest
 
-COPY entrypoint.sh /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+WORKDIR /tmp
+COPY entrypoint.sh /tmp/entrypoint.sh
+ENTRYPOINT ["/tmp/entrypoint.sh"]
 

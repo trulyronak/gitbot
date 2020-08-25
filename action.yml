@@ -1,13 +1,15 @@
-# action.yml
+# action.ym
 name: 'Optic Spec Viewer'
 description: 'Automatically publish the latest spec of your API'
 inputs:
   branch:
     description: 'The branch to publish'
     required: true
+    default: ${{ github.head_ref }}
   repository:
     description: 'The repo to look at' 
     required: true
+    default: ${{ github.repository }}
 outputs:
   message: 
     description: 'The url where the spec is shared on'

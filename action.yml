@@ -1,4 +1,3 @@
-# action.ym
 name: 'Optic Spec Viewer'
 description: 'Automatically publish the latest spec of your API'
 inputs:
@@ -19,4 +18,6 @@ runs:
   args:
     - ${{ inputs.repository }}
     - ${{ inputs.branch }}
-
+branding:
+  color: white
+  icon: life-buoy

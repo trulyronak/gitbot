@@ -12,3 +12,11 @@ jobs:
           repository: trulyronak/gitbot
           branch: ${{ github.head_ref }}
           head: main
+      id: generate_spec
+    - name: Comment on PR
+      uses: unsplash/comment-on-pr@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        msg: ${{ steps.generate_spec.outputs.message }}
+        check_for_duplicate_msg: false

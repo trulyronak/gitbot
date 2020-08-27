@@ -1,4 +1,5 @@
 #!/usr/bin/env ruby
+# Taken from https://github.com/unsplash/comment-on-pr (MIT Licensed)
 
 require "json"
 require "octokit"

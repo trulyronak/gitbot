@@ -41,13 +41,14 @@ end
 
 coms = github.issue_comments(repo, pr_number)
 
-if check_duplicate_msg == "true"
-  duplicate = coms.find { |c| c["body"] == message }
 
-  if duplicate
-    puts "The PR already contains this message"
-    exit(0)
-  end
+prevComment = coms.find { |c| c["body"].include? "<!-- OPTIC_BOT_ID_REFERENCE: THIS LINE IS USED TO IDENTIFY THE COMMENT TO EDIT IT -->" }
+
+if prevComment
+  # edit that comment
+  github.update_comment(repo, prevComment["id"], message)
+  exit(0)
 end
+
 
 github.add_comment(repo, pr_number, message)

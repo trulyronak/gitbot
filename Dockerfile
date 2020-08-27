@@ -11,6 +11,15 @@ WORKDIR /home/node/optic
 RUN git checkout feature/spec-publisher
 RUN /bin/bash -c "source ./sourceme.sh && optic_build"
 
+# Install Ruby. (For PR Commenting)
+RUN \
+  apt-get update && \
+  apt-get install -y ruby
+
+RUN gem install octokit
+
+COPY comment.rb /home/node/comment.rb
+
 WORKDIR /home/node
 COPY entrypoint.sh /home/node/entrypoint.sh
 ENTRYPOINT ["/home/node/entrypoint.sh"]

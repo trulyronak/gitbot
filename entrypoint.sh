@@ -11,4 +11,9 @@ export OPTIC_LOCAL_SPEC_VIEWER_URL=https://apidocs.o3c.info
 export URL=$(/home/node/optic/workspaces/ci-cli/bin/run publish --url)
 /home/node/optic/workspaces/ci-cli/bin/run compare /tmp/base.json /tmp/head.json --specUrl $URL > /tmp/message
 export MESSAGE=$(cat /tmp/message)
+MESSAGE=$(cat /tmp/message)
+MESSAGE="${MESSAGE//'%'/'%25'}"
+MESSAGE="${MESSAGE//$'\n'/'%0A'}"
+MESSAGE="${MESSAGE//$'\r'/'%0D'}"
+echo $MESSAGE
 echo "::set-output name=message::$MESSAGE"

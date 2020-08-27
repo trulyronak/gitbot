@@ -15,5 +15,9 @@ MESSAGE=$(cat /tmp/message)
 MESSAGE="${MESSAGE//'%'/'%25'}"
 MESSAGE="${MESSAGE//$'\n'/'%0A'}"
 MESSAGE="${MESSAGE//$'\r'/'%0D'}"
+
+# Comment
+ruby /home/node/comment.rb /tmp/message false
+
 echo $MESSAGE
 echo "::set-output name=message::$MESSAGE"

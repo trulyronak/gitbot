@@ -46,7 +46,7 @@ prevComment = coms.find { |c| c["body"].include? "<!-- OPTIC_BOT_ID_REFERENCE: T
 
 if prevComment
   # edit that comment
-  github.updateComment(repo, prevComment["id"], message)
+  github.update_comment(repo, prevComment["id"], message)
   exit(0)
 end
 

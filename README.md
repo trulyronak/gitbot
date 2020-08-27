@@ -4,44 +4,36 @@ See your latest API Specification for every single pull request
 
 ## Prerequisites
 
-- An Optic Project. [Get Started](https://app.useoptic.com)
+- An Optic Project. Make one [here!](https://app.useoptic.com)
 
 ## Usage
 
-Simply create a new pull request workflow
+Simply add Optic to your pull request workflow. Requires `GITHUB_TOKEN` to comment on prs.
+
 
 `.github/workflows/optic.yml`
 
-```yml
-name: Comment Spec url on PR
+```yaml
+name: Optic Pull Request Bot
 on: [pull_request]
 jobs:
   optic_pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: trulyronak/gitbot@0.01
-        with:
-            repository: trulyronak/gitbot
-            branch: ${{ github.head_ref }}
-            head: main
-        id: generate_spec
-      - name: Comment on PR
-        uses: unsplash/comment-on-pr@master
+      - name: Optic PR Bot
+        uses: trulyronak/gitbot@0.01
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          msg: ${{ steps.generate_spec.outputs.message }}
-          check_for_duplicate_msg: false
 ```
 
 ## Inputs
 
-### `branch`
+All inputs can be passed in with the 
 
-**Required** The branch to checkout
-**Default** ${{ github.head_ref }}
+### `head`
+
+The branch to compare with base. Defaults to `${{ github.head_ref }}`, or the branch that spurred the `pull_request` event.
 
 ### `repository`
 
-**Required** The repo to be using at
-**Default** ${{ github.repository }}
+The repository to be running this on. Defaults to the current repository.

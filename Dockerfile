@@ -1,5 +1,6 @@
 FROM node:latest
 
+# Install Optic (Can later be reduced to be npm i -g @useoptic/ci-cli)
 RUN apt update
 RUN apt install apt-transport-https curl git sudo -y
 RUN echo "deb https://dl.bintray.com/sbt/debian /" | sudo tee -a /etc/apt/sources.list.d/sbt.list
@@ -11,7 +12,7 @@ WORKDIR /home/node/optic
 RUN git checkout feature/spec-publisher
 RUN /bin/bash -c "source ./sourceme.sh && optic_build"
 
-# Install Ruby. (For PR Commenting)
+# Install Ruby and setup PR Commenting
 RUN \
   apt-get update && \
   apt-get install -y ruby
